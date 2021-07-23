@@ -1,0 +1,29 @@
+.profileModal {
+  position: absolute;
+  top: 5.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba($color: #1a50a1, $alpha: 0.5);
+  padding: 0.5rem;
+  border: 1px solid black;
+
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .MuiSvgIcon-root {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  div:hover {
+    p,
+    .MuiSvgIcon-root {
+      color: rgba($color: #ffffff, $alpha: 0.7);
+      transition: ease-in-out 0.2s;
+    }
+  }
+}
