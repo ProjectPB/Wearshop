@@ -12,14 +12,16 @@ html {
 
 body {
   font-family: "Open Sans", sans-serif;
+  max-width: 125rem;
+  margin: 0 auto;
 }
 
 h1 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
-@media(max-width: 480px) {
+@media (max-width: 480px) {
   h1 {
     font-size: 2rem;
   }
