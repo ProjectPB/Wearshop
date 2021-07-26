@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Avatar, ClickAwayListener } from "@material-ui/core";
+import { ClickAwayListener } from "@material-ui/core";
+import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import Logo from "../Logo";
 import ProfileModal from "./ProfileModal";
@@ -26,10 +27,13 @@ const Header = () => {
       </nav>
 
       <div className="icons">
-        <ShoppingCartOutlinedIcon fontSize="large" className="cartIcon" />
+        <ShoppingCartOutlinedIcon className="cartIcon" />
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
-            <Avatar onClick={handleProfileModal} />
+            <PersonOutlineOutlinedIcon
+              className="profileIcon"
+              onClick={handleProfileModal}
+            />
             {profileModalOpen ? <ProfileModal /> : null}
           </div>
         </ClickAwayListener>

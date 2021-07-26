@@ -1,0 +1,36 @@
+.resetContainer {
+  height: calc(100vh - 11rem);
+  width: 100%;
+  display: grid;
+  place-items: center;
+
+  .reset {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    width: 60%;
+    min-width: 35rem;
+
+    ul,
+    p {
+      margin-bottom: 1rem;
+      margin-right: auto;
+      li {
+        color: red;
+        font-size: 1.6rem;
+      }
+    }
+
+    .body {
+      width: 100%;
+
+      .input {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

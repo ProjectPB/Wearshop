@@ -1,0 +1,17 @@
+.button {
+  width: 100%;
+  padding: 8px 16px;
+  color: white;
+  background-color: #1a50a1;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+}
+
+.button:active {
+  outline: 1px solid black;
+}
+
+.button:hover {
+  background-color: rgba($color: #1a50a1, $alpha: 0.9);
+}

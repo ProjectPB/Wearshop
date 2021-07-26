@@ -7,12 +7,12 @@ const Hero = () => {
   return (
     <div className="hero">
       <div>
-        <img src={MenImg} alt="Men image" />
+        <img src={MenImg} alt="Men" />
         <h1>Men</h1>
       </div>
 
       <div>
-        <img src={WomenImg} alt="Women image" />
+        <img src={WomenImg} alt="Women" />
         <h1>Women</h1>
       </div>
     </div>
