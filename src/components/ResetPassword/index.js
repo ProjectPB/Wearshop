@@ -50,7 +50,7 @@ const ResetPassword = () => {
             })}
           </ul>
         )}
-        <form className="body" onClick={handleSubmit}>
+        <form className="body" onSubmit={handleSubmit}>
           <Input
             label="Email"
             type="email"
