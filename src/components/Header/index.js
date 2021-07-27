@@ -22,8 +22,7 @@ const Header = () => {
       <Logo />
 
       <nav>
-        <p>Men</p>
-        <p>Women</p>
+        <p>PRODUCTS</p>
       </nav>
 
       <div className="icons">

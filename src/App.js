@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { checkUserSession } from "./redux/User/user.actions";
 
-import "./default.scss";
 import MainLayout from "./layouts/MainLayout";
 
+import WithAdminAuth from "./hoc/withAdminAuth";
+
 import Home from "./pages/Home";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
-import ResetPassword from "./components/ResetPassword";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Recover from "./pages/Recover";
+import "./default.scss";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, []);
+
   return (
     <div className="app">
       <Router>
@@ -27,7 +38,7 @@ const App = () => {
             path="/register"
             render={() => (
               <MainLayout>
-                <SignUp />
+                <Register />
               </MainLayout>
             )}
           />
@@ -35,7 +46,7 @@ const App = () => {
             path="/login"
             render={() => (
               <MainLayout>
-                <SignIn />
+                <Login />
               </MainLayout>
             )}
           />
@@ -43,8 +54,18 @@ const App = () => {
             path="/recover"
             render={() => (
               <MainLayout>
-                <ResetPassword />
+                <Recover />
               </MainLayout>
+            )}
+          />
+          <Route
+            path="/admin"
+            render={() => (
+              <WithAdminAuth>
+                <MainLayout>
+                  <Admin />
+                </MainLayout>
+              </WithAdminAuth>
             )}
           />
         </Switch>

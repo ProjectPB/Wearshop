@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ExitToApp, ListAlt, PersonOutlineOutlined } from "@material-ui/icons";
 import { signOutUserStart } from "./../../../redux/User/user.actions";
 import Button from "../../forms/Button";
+import { checkUserIsAdmin } from "../../../utils";
 import "./styles.scss";
 
 const mapState = ({ user }) => ({
@@ -22,10 +23,18 @@ const ProfileModal = () => {
     <div className="profileModal">
       {currentUser && (
         <div className="menu">
-          <div className="row profile">
+          <div className="profile">
             <PersonOutlineOutlined />
             <p>{currentUser.displayName}</p>
           </div>
+
+          {checkUserIsAdmin(currentUser) && (
+            <Link to="/admin">
+              <div className="row admin">
+                <p>Admin</p>
+              </div>
+            </Link>
+          )}
 
           <div className="row">
             <ListAlt />
