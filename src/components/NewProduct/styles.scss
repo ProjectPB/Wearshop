@@ -1,0 +1,27 @@
+.newProductContainer {
+  flex: 0.25;
+  width: 100%;
+  min-width: 20rem;
+
+  .newProduct {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    form {
+      .select,
+      .input {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .newProductContainer {
+    padding-top: 1rem;
+  }
+}

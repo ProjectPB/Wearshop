@@ -1,0 +1,13 @@
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 1.6rem;
+  }
+
+  .select {
+    outline: none;
+    padding: 0.5rem;
+  }
+}

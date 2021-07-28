@@ -1,10 +1,13 @@
 import React from "react";
-import AdminDashboard from "./../../components/AdminDashboard";
+import AdminProducts from "../../components/AdminProducts";
+import NewProduct from "../../components/NewProduct";
+import "./styles.scss";
 
 const Admin = () => {
   return (
     <div className="admin">
-      <AdminDashboard />
+      <AdminProducts />
+      <NewProduct />
     </div>
   );
 };

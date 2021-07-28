@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ExitToApp, ListAlt, PersonOutlineOutlined } from "@material-ui/icons";
 import { signOutUserStart } from "./../../../redux/User/user.actions";
-import Button from "../../forms/Button";
 import { checkUserIsAdmin } from "../../../utils";
+import Button from "../../forms/Button";
 import "./styles.scss";
 
 const mapState = ({ user }) => ({
@@ -30,7 +30,7 @@ const ProfileModal = () => {
 
           {checkUserIsAdmin(currentUser) && (
             <Link to="/admin">
-              <div className="row admin">
+              <div className="row adminLink">
                 <p>Admin</p>
               </div>
             </Link>

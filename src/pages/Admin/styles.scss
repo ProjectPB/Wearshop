@@ -1,0 +1,13 @@
+.admin {
+  height: calc(100vh - 13rem);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 480px) {
+  .admin {
+    flex-direction: column;
+  }
+}
