@@ -1,7 +1,9 @@
 .newProductContainer {
-  flex: 0.25;
-  width: 100%;
-  min-width: 20rem;
+  width: 30rem;
+  height: calc(100vh - 13rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 1rem;
 
   .newProduct {
     display: flex;
@@ -9,12 +11,17 @@
 
     h2 {
       margin-bottom: 0.5rem;
+      text-align: center;
+      display: block;
     }
 
     form {
       .select,
       .input {
         margin-bottom: 0.5rem;
+      }
+      p {
+        font-size: 1.6rem;
       }
     }
   }
@@ -23,5 +30,11 @@
 @media (max-width: 480px) {
   .newProductContainer {
     padding-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .newProductContainer {
+    width: 100%;
   }
 }
