@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProductStart,
@@ -16,9 +16,10 @@ const AdminProducts = () => {
   const dispatch = useDispatch();
   const { products } = useSelector(mapState);
   const { data, queryDoc, isLastPage } = products;
+  const [pageSize, setPageSize] = useState(10);
 
   useEffect(() => {
-    dispatch(fetchProductsStart());
+    dispatch(fetchProductsStart({ pageSize }));
   }, []);
 
   const handleLoadMore = () => {
@@ -26,6 +27,7 @@ const AdminProducts = () => {
       fetchProductsStart({
         startAfterDoc: queryDoc,
         persistProducts: data,
+        pageSize,
       })
     );
   };
@@ -43,7 +45,7 @@ const AdminProducts = () => {
             product;
 
           return (
-            <div className="product" key={index}>
+            <div className="adminProduct" key={index}>
               <img src={productThumbnail} alt={productName} />
               <div className="info">
                 <h2>{productName}</h2>

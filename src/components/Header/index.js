@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { ClickAwayListener } from "@material-ui/core";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -21,9 +22,9 @@ const Header = () => {
     <div className="header">
       <Logo />
 
-      <nav>
+      <Link to="/products">
         <p>PRODUCTS</p>
-      </nav>
+      </Link>
 
       <div className="icons">
         <ShoppingCartOutlinedIcon className="cartIcon" />

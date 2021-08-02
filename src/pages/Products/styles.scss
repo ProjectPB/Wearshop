@@ -1,0 +1,13 @@
+.productsContainer {
+  padding: 1rem;
+
+  h1 {
+    margin: 1rem 0;
+  }
+
+  .products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

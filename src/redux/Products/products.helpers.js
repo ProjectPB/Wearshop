@@ -19,10 +19,9 @@ export const handleFetchProducts = ({
   filterType,
   startAfterDoc,
   persistProducts = [],
+  pageSize,
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6;
-
     let ref = firestore
       .collection("products")
       .orderBy("createdDate")

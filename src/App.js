@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Recover from "./pages/Recover";
 import "./default.scss";
+import Products from "./pages/Products";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,24 @@ const App = () => {
             render={() => (
               <MainLayout>
                 <Home />
+              </MainLayout>
+            )}
+          />
+          <Route
+            exact
+            path="/products"
+            render={() => (
+              <MainLayout>
+                <Products />
+              </MainLayout>
+            )}
+          />
+          <Route
+            exact
+            path="/products/:filterType"
+            render={() => (
+              <MainLayout>
+                <Products />
               </MainLayout>
             )}
           />
