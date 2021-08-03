@@ -7,7 +7,7 @@
   padding: 0 1rem;
   margin: 0 auto;
 
-  nav {
+  a {
     p {
       display: block;
       font-weight: 550;
@@ -18,6 +18,7 @@
       user-select: none;
       &:hover {
         color: rgb(26, 80, 161);
+        transition: ease-in-out 0.2s;
       }
     }
   }

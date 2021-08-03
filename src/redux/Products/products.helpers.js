@@ -16,7 +16,8 @@ export const handleAddProduct = (product) => {
 };
 
 export const handleFetchProducts = ({
-  filterType,
+  categoryFilter,
+  typeFilter,
   startAfterDoc,
   persistProducts = [],
   pageSize,
@@ -27,7 +28,11 @@ export const handleFetchProducts = ({
       .orderBy("createdDate")
       .limit(pageSize);
 
-    if (filterType) ref = ref.where("productCategory", "==", filterType);
+    if (categoryFilter === "men" || categoryFilter === "women")
+      ref = ref.where("productCategory", "==", categoryFilter);
+
+    if (typeFilter) ref = ref.where("productType", "==", typeFilter);
+
     if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
 
     ref

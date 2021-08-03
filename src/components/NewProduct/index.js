@@ -67,6 +67,8 @@ const NewProduct = () => {
       case "women":
         setOptions(womenOptions);
         return;
+      default:
+        return;
     }
   }, [productCategory]);
 

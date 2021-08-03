@@ -46,7 +46,16 @@ const App = () => {
           />
           <Route
             exact
-            path="/products/:filterType"
+            path="/products/:categoryFilter"
+            render={() => (
+              <MainLayout>
+                <Products />
+              </MainLayout>
+            )}
+          />
+          <Route
+            exact
+            path="/products/:categoryFilter/:typeFilter"
             render={() => (
               <MainLayout>
                 <Products />
