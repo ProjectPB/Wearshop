@@ -23,7 +23,7 @@ const Header = () => {
       <Logo />
 
       <Link to="/products">
-        <p>PRODUCTS</p>
+        <p className="navLink">PRODUCTS</p>
       </Link>
 
       <div className="icons">

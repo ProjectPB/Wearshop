@@ -23,7 +23,7 @@ const mapState = ({ productsData }) => ({
 const Products = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { categoryFilter, typeFilter } = useParams();
+  const { categoryFilter = "all", typeFilter = "" } = useParams();
   const [typeOptions, setTypeOptions] = useState(allOptions);
   const { products } = useSelector(mapState);
   const pageSize = 8;
@@ -42,9 +42,6 @@ const Products = () => {
 
   useEffect(() => {
     switch (categoryFilter) {
-      case undefined:
-        setTypeOptions(allOptions);
-        return;
       case "all":
         setTypeOptions(allOptions);
         return;
@@ -81,12 +78,14 @@ const Products = () => {
   };
 
   const configCategoryFilters = {
+    label: "Category",
     defaultValue: categoryFilter,
     options: categories,
     handleChange: handleCategoryFilter,
   };
 
   const configTypeFilters = {
+    label: "Type",
     defaultValue: typeFilter,
     options: typeOptions,
     handleChange: handleTypeFilter,
@@ -110,27 +109,15 @@ const Products = () => {
 
   if (!Array.isArray(data)) return null;
 
-  if (data.length < 1) {
-    return (
-      <div className="productsContainer">
-        <div className="noResults">
-          <h1>Products</h1>
-          <Select {...configCategoryFilters} />
-          <Select {...configTypeFilters} />
-          <p>No search results</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="productsContainer">
-      <h1>Products</h1>
-
-      <Select {...configCategoryFilters} />
-      <Select {...configTypeFilters} />
+      <div className="productsFilters">
+        <Select {...configCategoryFilters} />
+        <Select {...configTypeFilters} />
+      </div>
 
       <div className="products">
+        {data.length < 1 && <p className="noResults">No search results</p>}
         {data.map((product, index) => {
           const { productThumbnail, productName, productPrice } = product;
           if (

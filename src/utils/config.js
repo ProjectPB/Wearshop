@@ -1,6 +1,6 @@
 export const categories = [
   {
-    name: "Show all",
+    name: "All",
     value: "all",
   },
   {
@@ -15,7 +15,7 @@ export const categories = [
 
 export const allOptions = [
   {
-    name: "Show all",
+    name: "All",
     value: "",
   },
   {
@@ -46,7 +46,7 @@ export const allOptions = [
 
 export const womenOptions = [
   {
-    name: "Show all",
+    name: "All",
     value: "",
   },
   {
@@ -73,7 +73,7 @@ export const womenOptions = [
 
 export const menOptions = [
   {
-    name: "Show all",
+    name: "All",
     value: "",
   },
   {

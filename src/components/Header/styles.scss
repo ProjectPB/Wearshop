@@ -7,19 +7,17 @@
   padding: 0 1rem;
   margin: 0 auto;
 
-  a {
-    p {
-      display: block;
-      font-weight: 550;
-      padding: 1rem;
-      margin: 0 0.5rem;
-      cursor: pointer;
-      text-transform: uppercase;
-      user-select: none;
-      &:hover {
-        color: rgb(26, 80, 161);
-        transition: ease-in-out 0.2s;
-      }
+  .navLink {
+    display: block;
+    font-weight: 550;
+    padding: 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    user-select: none;
+    &:hover {
+      color: rgb(26, 80, 161);
+      transition: ease-in-out 0.2s;
     }
   }
 

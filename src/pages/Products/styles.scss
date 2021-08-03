@@ -5,9 +5,23 @@
     margin: 1rem 0;
   }
 
+  .productsFilters {
+    background-color: whitesmoke;
+    padding: 1rem;
+
+    .select {
+      margin-bottom: 1rem;
+    }
+  }
+
   .products {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    min-height: 40rem;
+
+    .noResults {
+      margin-top: 2rem;
+    }
   }
 }
