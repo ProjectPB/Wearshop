@@ -1,0 +1,27 @@
+.productsResultsContainer {
+  padding: 1rem;
+
+  h1 {
+    margin: 1rem 0;
+  }
+
+  .filters {
+    background-color: whitesmoke;
+    padding: 1rem;
+
+    .select {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .productsResults {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 40rem;
+
+    .noResults {
+      margin-top: 2rem;
+    }
+  }
+}

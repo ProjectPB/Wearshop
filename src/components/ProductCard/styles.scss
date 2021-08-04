@@ -1,4 +1,4 @@
-.product {
+.productCard {
   width: 25%;
   padding: 2.5rem 1rem;
 
@@ -23,19 +23,19 @@
 }
 
 @media (max-width: 992px) {
-  .product {
+  .productCard {
     width: 33%;
   }
 }
 
 @media (max-width: 768px) {
-  .product {
+  .productCard {
     width: 50%;
   }
 }
 
 @media (max-width: 450px) {
-  .product {
+  .productCard {
     width: 100%;
   }
 }

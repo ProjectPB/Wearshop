@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles.scss";
 
-const Product = (product) => {
+const ProductCard = (product) => {
   const { documentID, productThumbnail, productName, productPrice } = product;
   if (
     !documentID ||
@@ -12,9 +13,11 @@ const Product = (product) => {
     return null;
 
   return (
-    <div className="product">
+    <div className="productCard">
       <div className="thumbnail">
-        <img src={productThumbnail} alt={productName} />
+        <Link to={`/product/${documentID}`}>
+          <img src={productThumbnail} alt={productName} />
+        </Link>
       </div>
       <div className="details">
         <p className="name">{productName}</p>
@@ -24,4 +27,4 @@ const Product = (product) => {
   );
 };
 
-export default Product;
+export default ProductCard;

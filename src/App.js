@@ -12,8 +12,9 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Recover from "./pages/Recover";
-import "./default.scss";
 import Products from "./pages/Products";
+import Product from "./pages/Product";
+import "./default.scss";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,15 @@ const App = () => {
             render={() => (
               <MainLayout>
                 <Products />
+              </MainLayout>
+            )}
+          />
+          <Route
+            exact
+            path="/product/:productID"
+            render={() => (
+              <MainLayout>
+                <Product />
               </MainLayout>
             )}
           />
