@@ -14,6 +14,7 @@ import Register from "./pages/Register";
 import Recover from "./pages/Recover";
 import Products from "./pages/Products";
 import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 import "./default.scss";
 
 const App = () => {
@@ -69,6 +70,14 @@ const App = () => {
             render={() => (
               <MainLayout>
                 <Product />
+              </MainLayout>
+            )}
+          />
+          <Route
+            path="/cart"
+            render={() => (
+              <MainLayout>
+                <Cart />
               </MainLayout>
             )}
           />

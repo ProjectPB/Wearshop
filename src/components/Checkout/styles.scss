@@ -1,0 +1,37 @@
+.checkoutContainer {
+  h1 {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  h1,
+  p {
+    text-align: center;
+  }
+
+  .checkoutHeader {
+    border-bottom: 1px solid black;
+  }
+
+  .checkout {
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    table {
+      width: 100%;
+    }
+  }
+
+  .checkoutHeader,
+  .checkout {
+    width: 100%;
+    text-align: left;
+
+    th,
+    td {
+      width: 22%;
+    }
+  }
+}

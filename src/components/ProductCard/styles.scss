@@ -10,14 +10,21 @@
       transition: 0.3s all ease-in-out;
     }
     img:hover {
-      transform: scale(1.025);
+      transform: scale(1.01);
       opacity: 0.8;
     }
   }
 
   .details {
-    .price {
-      font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+
+    .detailsLeft {
+      flex: 1;
+      // margin-right: 0.1rem;
+      .price {
+        font-weight: 300;
+      }
     }
   }
 }

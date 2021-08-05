@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductStart,
   setProduct,
 } from "./../../redux/Products/products.actions";
+import { addProduct } from "../../redux/Cart/cart.actions";
+import Button from "./../forms/Button";
 import "./styles.scss";
 
 const mapState = (state) => ({
@@ -12,6 +14,7 @@ const mapState = (state) => ({
 });
 
 const ProductDetails = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { productID } = useParams();
   const { product } = useSelector(mapState);
@@ -27,6 +30,15 @@ const ProductDetails = () => {
     };
   }, []);
 
+  const handleAddToCart = (product) => {
+    if (!product) return;
+    dispatch(addProduct(product));
+  };
+
+  const configAddToCartBtn = {
+    type: "button",
+  };
+
   return (
     <div className="productDetailsContainer">
       <div className="productDetails">
@@ -35,6 +47,12 @@ const ProductDetails = () => {
         <div className="details">
           <h1>{productName}</h1>
           <p>{productPrice} PLN</p>
+          <Button
+            {...configAddToCartBtn}
+            onClick={() => handleAddToCart(product)}
+          >
+            Add to cart
+          </Button>
           {productDescription && (
             <span dangerouslySetInnerHTML={{ __html: productDescription }} />
           )}
