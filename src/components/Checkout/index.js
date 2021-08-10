@@ -1,14 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
+import NumberFormat from "react-number-format";
 import {
   selectCartItems,
   selectCartTotal,
 } from "./../../redux/Cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
-import "./styles.scss";
 import Button from "./../forms/Button";
 import Item from "./Item";
+import "./styles.scss";
 
 const mapState = createStructuredSelector({
   cartItems: selectCartItems,
@@ -23,81 +24,45 @@ const Checkout = ({}) => {
 
   return (
     <div className="checkoutContainer">
-      <h1>Checkout</h1>
-
-      <div className="checkout">
-        {cartItems.length > 0 ? (
-          <table border="0" cellPadding="0" cellSpacing="0">
+      {cartItems.length > 0 ? (
+        <div className="checkout">
+          <table>
             <tbody>
-              <tr>
-                <table
-                  className="checkoutHeader"
-                  border="0"
-                  cellPadding="10"
-                  cellSpacing="0"
-                >
-                  <tbody>
-                    <tr>
-                      <th>Product</th>
-                      <th>Description</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                      <th>Remove</th>
-                    </tr>
-                  </tbody>
-                </table>
+              <tr className="headerRow">
+                <th>Product</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Remove</th>
               </tr>
 
-              <tr>
-                <table border="0" cellPadding="0" cellSpacing="0">
-                  <tbody>
-                    {cartItems.map((item, index) => {
-                      return (
-                        <tr key={index}>
-                          <Item {...item} />
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </tr>
-
-              <tr>
-                <table
-                  align="right"
-                  border="0"
-                  cellSpacing="0"
-                  cellPadding="10"
-                >
-                  <tr align="left">
-                    <td>
-                      <h3>Total: ${total}</h3>
-                    </td>
-                  </tr>
-                  <tr>
-                    <table border="0" cellPadding="10" cellSpacing="0">
-                      <tbody>
-                        <tr className="cartBtns">
-                          <td>
-                            <Button onClick={() => history.goBack()}>
-                              Continue Shopping
-                            </Button>
-                          </td>
-                          <td>
-                            <Button>CHECKOUT</Button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                </table>
-              </tr>
+              {cartItems.map((item, index) => {
+                return <Item key={index} {...item} />;
+              })}
             </tbody>
           </table>
-        ) : (
-          <p>{errMsg}</p>
-        )}
-      </div>
+
+          <div className="totalRow">
+            <h2>
+              Total:{" "}
+              <NumberFormat
+                value={total}
+                displayType={"text"}
+                thousandSeparator={true}
+                suffix={" PLN"}
+                decimalScale="2"
+              />
+            </h2>
+          </div>
+
+          <div className="buttonsRow">
+            <Button onClick={() => history.goBack()}>Continue Shopping</Button>
+            <Button>Checkout</Button>
+          </div>
+        </div>
+      ) : (
+        <p>{errMsg}</p>
+      )}
     </div>
   );
 };

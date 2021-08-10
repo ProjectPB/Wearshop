@@ -1,37 +1,87 @@
 .checkoutContainer {
-  h1 {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  h1,
-  p {
-    text-align: center;
-  }
-
-  .checkoutHeader {
-    border-bottom: 1px solid black;
-  }
+  max-width: 130rem;
+  margin: 0 auto;
 
   .checkout {
-    max-width: 130rem;
-    margin: 0 auto;
-    padding: 0 1rem;
+    width: 100%;
 
     table {
+      border-spacing: 1rem;
+      text-align: center;
       width: 100%;
+
+      tr {
+        width: 100%;
+
+        th,
+        td {
+          width: 22%;
+          font-size: 1.8rem;
+          user-select: none;
+        }
+
+        th {
+          margin: 1rem;
+          border-bottom: 1px solid lightgray;
+          background-color: whitesmoke;
+          border-radius: 1rem;
+          padding: 1rem 0;
+        }
+
+        td {
+          padding: 1rem 0;
+
+          img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+          }
+
+          .cartBtn {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .checkout::-webkit-scrollbar {
+      display: none;
+    }
+
+    .totalRow {
+      width: 100%;
+      text-align: right;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+    }
+
+    .buttonsRow {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      .button {
+        width: calc(50% - 1rem);
+      }
     }
   }
+}
 
-  .checkoutHeader,
-  .checkout {
-    width: 100%;
-    text-align: left;
-
-    th,
-    td {
-      width: 22%;
+@media (max-width: 480px) {
+  .checkoutContainer {
+    .checkout {
+      overflow-x: scroll;
+      table {
+        border-spacing: 0.5rem;
+        tr {
+          th,
+          td {
+            font-size: 1.2rem;
+          }
+          th {
+            padding: 0.5rem 0.5rem;
+          }
+        }
+      }
     }
   }
 }

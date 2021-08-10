@@ -1,4 +1,5 @@
 import React from "react";
+import NumberFormat from "react-number-format";
 import { useDispatch } from "react-redux";
 import { HighlightOff } from "@material-ui/icons";
 import {
@@ -6,7 +7,6 @@ import {
   addProduct,
   reduceCartItem,
 } from "./../../../redux/Cart/cart.actions";
-import "./styles.scss";
 
 const Item = (product) => {
   const dispatch = useDispatch();
@@ -26,36 +26,41 @@ const Item = (product) => {
   };
 
   return (
-    <table className="cartItem" border="0" cellSpacing="0" cellPadding="10">
-      <tbody>
-        <tr>
-          <td>
-            <img src={productThumbnail} alt={productName} />
-          </td>
-          <td>{productName}</td>
-          <td>
-            <span
-              className="cartBtn"
-              onClick={() => handleReduceItem(product)}
-            >{`< `}</span>
-            <span>{quantity}</span>
-            <span
-              className="cartBtn"
-              onClick={() => handleAddProduct(product)}
-            >{` >`}</span>
-          </td>
-          <td>${productPrice}</td>
-          <td align="center">
-            <span
-              className="cartBtn"
-              onClick={() => handleRemoveCartItem(documentID)}
-            >
-              <HighlightOff fontSize="large" />
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tr className="itemRow">
+      <td>
+        <img src={productThumbnail} alt={productName} />
+      </td>
+      <td>{productName}</td>
+      <td>
+        <span
+          className="cartBtn"
+          onClick={() => handleReduceItem(product)}
+        >{`< `}</span>
+        <span>{quantity}</span>
+        <span
+          className="cartBtn"
+          onClick={() => handleAddProduct(product)}
+        >{` >`}</span>
+      </td>
+      <td>
+        {" "}
+        <NumberFormat
+          value={productPrice}
+          displayType={"text"}
+          thousandSeparator={true}
+          suffix={" PLN"}
+          decimalScale="2"
+        />
+      </td>
+      <td>
+        <span
+          className="cartBtn"
+          onClick={() => handleRemoveCartItem(documentID)}
+        >
+          <HighlightOff fontSize="large" />
+        </span>
+      </td>
+    </tr>
   );
 };
 

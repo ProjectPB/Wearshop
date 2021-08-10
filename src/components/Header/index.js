@@ -29,9 +29,11 @@ const Header = () => {
     <div className="header">
       <Logo />
 
-      <Link to="/products">
-        <p className="navLink">PRODUCTS</p>
-      </Link>
+      <div className="productsLink">
+        <Link to="/products">
+          <p className="navLink">products</p>
+        </Link>
+      </div>
 
       <div className="icons">
         <Link to="/cart">
@@ -41,7 +43,7 @@ const Header = () => {
           </div>
         </Link>
         <ClickAwayListener onClickAway={handleClickAway}>
-          <div>
+          <div className="profileContainer">
             <PersonOutlineOutlinedIcon
               className="profileIcon"
               onClick={handleProfileModal}

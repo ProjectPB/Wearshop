@@ -9,9 +9,8 @@
 
   .navLink {
     display: block;
-    font-weight: 550;
+    font-weight: 500;
     padding: 1rem;
-    margin: 0 1rem;
     cursor: pointer;
     text-transform: uppercase;
     user-select: none;
@@ -24,14 +23,19 @@
   .icons {
     display: flex;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
 
     .cartContainer {
       position: relative;
+      margin-right: 2rem;
+      padding-right: 1rem;
+
       p {
         position: absolute;
-        top: 0.5rem;
-        left: 4.25rem;
+        top: 10%;
+        left: 70%;
         display: inline-block;
+        -webkit-tap-highlight-color: transparent;
       }
     }
 
@@ -39,28 +43,34 @@
     .profileIcon {
       height: 3.5rem;
       width: 3.5rem;
-      margin: 0 1rem;
       cursor: pointer;
+      &:hover {
+        color: rgb(26, 80, 161);
+        transition: ease-in-out 0.2s;
+      }
     }
   }
 }
 
 @media (max-width: 480px) {
   .header {
-    nav {
+    .navLink {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .icons {
+    .cartContainer {
       p {
-        margin: 0;
-        padding: 0 0.5rem;
+        top: 0;
       }
     }
 
-    .icons {
-      .cartIcon,
-      .profileIcon {
-        height: 2.5rem;
-        width: 2.5rem;
-        margin: 0 0.5rem;
-      }
+    .cartIcon,
+    .profileIcon {
+      height: 2.5rem;
+      width: 2.5rem;
     }
   }
 }
