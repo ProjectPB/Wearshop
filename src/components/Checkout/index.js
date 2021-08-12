@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NumberFormat from "react-number-format";
 import {
@@ -43,21 +44,14 @@ const Checkout = ({}) => {
           </table>
 
           <div className="totalRow">
-            <h2>
-              Total:{" "}
-              <NumberFormat
-                value={total}
-                displayType={"text"}
-                thousandSeparator={true}
-                suffix={" PLN"}
-                decimalScale="2"
-              />
-            </h2>
+            <h2>Total: {total.toFixed(2)} PLN</h2>
           </div>
 
           <div className="buttonsRow">
             <Button onClick={() => history.goBack()}>Continue Shopping</Button>
-            <Button>Checkout</Button>
+            <Link to="/payment">
+              <Button>Checkout</Button>
+            </Link>
           </div>
         </div>
       ) : (

@@ -59,8 +59,12 @@
       display: flex;
       justify-content: space-between;
       padding: 0 1rem;
-      .button {
+      .button,
+      a {
         width: calc(50% - 1rem);
+      }
+      a .button {
+        width: 100%;
       }
     }
   }

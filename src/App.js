@@ -6,6 +6,7 @@ import { checkUserSession } from "./redux/User/user.actions";
 import MainLayout from "./layouts/MainLayout";
 
 import WithAdminAuth from "./hoc/withAdminAuth";
+import WithAuth from "./hoc/withAuth";
 
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -15,6 +16,7 @@ import Recover from "./pages/Recover";
 import Products from "./pages/Products";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import Payment from "./pages/Payment";
 import "./default.scss";
 
 const App = () => {
@@ -79,6 +81,16 @@ const App = () => {
               <MainLayout>
                 <Cart />
               </MainLayout>
+            )}
+          />
+          <Route
+            path="/payment"
+            render={() => (
+              <WithAuth>
+                <MainLayout>
+                  <Payment />
+                </MainLayout>
+              </WithAuth>
             )}
           />
           <Route

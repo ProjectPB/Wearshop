@@ -1,0 +1,38 @@
+.paymentDetails {
+  display: block;
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 1rem;
+  margin: 2rem auto;
+
+  .group {
+    margin: 0 0 4rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-left: 0.25rem;
+      display: block;
+    }
+
+    div {
+      padding: 0.25rem;
+    }
+
+    .dropdownContainer {
+      width: 100%;
+
+      label {
+        font-size: 1.6rem;
+      }
+
+      .dropdown {
+        width: 100%;
+        padding: 0.5rem;
+      }
+    }
+
+    .cardDetails {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
