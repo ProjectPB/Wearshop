@@ -17,6 +17,7 @@ import Products from "./pages/Products";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
+import MyProfile from "./pages/MyProfile";
 import "./default.scss";
 
 const App = () => {
@@ -89,6 +90,16 @@ const App = () => {
               <WithAuth>
                 <MainLayout>
                   <Payment />
+                </MainLayout>
+              </WithAuth>
+            )}
+          />
+          <Route
+            path="/profile"
+            render={() => (
+              <WithAuth>
+                <MainLayout>
+                  <MyProfile />
                 </MainLayout>
               </WithAuth>
             )}
