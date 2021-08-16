@@ -5,22 +5,30 @@
   table {
     width: 100%;
     text-align: left;
+    border-collapse: collapse;
+
+    .order:hover {
+      background-color: whitesmoke;
+      color: gray;
+      cursor: pointer;
+      outline: 1px solid gray;
+    }
 
     tr {
       width: 100%;
 
       th,
       td {
-        width: 22%;
+        width: 33%;
         font-size: 1.8rem;
         user-select: none;
         padding: 1rem 0 1rem 1rem;
       }
 
       th {
-        border-bottom: 1px solid lightgray;
         background-color: whitesmoke;
-        border-radius: 1rem;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
       }
     }
   }
@@ -29,7 +37,6 @@
 @media (max-width: 480px) {
   .ordersContainer {
     table {
-      border-spacing: 0.5rem;
       tr {
         th,
         td {
