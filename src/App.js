@@ -18,6 +18,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import MyProfile from "./pages/MyProfile";
+import Order from "./pages/Order";
 import "./default.scss";
 
 const App = () => {
@@ -73,6 +74,17 @@ const App = () => {
             render={() => (
               <MainLayout>
                 <Product />
+              </MainLayout>
+            )}
+          />
+          <Route
+            exact
+            path="/order/:orderID"
+            render={() => (
+              <MainLayout>
+                <WithAuth>
+                  <Order />
+                </WithAuth>
               </MainLayout>
             )}
           />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserOrderHistory } from "./../../redux/Orders/orders.actions";
 import moment from "moment";
 import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
 const columns = [
   {
@@ -37,6 +38,7 @@ const mapState = ({ user, ordersData }) => ({
 
 const Orders = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { currentUser, orderHistory } = useSelector(mapState);
 
   useEffect(() => {
@@ -59,8 +61,14 @@ const Orders = () => {
           {Array.isArray(orderHistory) &&
             orderHistory.length > 0 &&
             orderHistory.map((row, index) => {
+              const { documentID } = row;
+
               return (
-                <tr className="order" key={index}>
+                <tr
+                  className="order"
+                  key={index}
+                  onClick={() => history.push(`/order/${documentID}`)}
+                >
                   {columns.map((column, index) => {
                     const columnName = column.id;
                     const columnValue = row[columnName];

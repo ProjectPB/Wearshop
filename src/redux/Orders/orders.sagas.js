@@ -1,9 +1,13 @@
-import ordersTypes from "./orders.types";
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { handleGetUserOrderHistory, handleSaveOrder } from "./orders.helpers";
-import { auth } from "./../../firebase/utils";
+import ordersTypes from "./orders.types";
+import {
+  handleGetOrder,
+  handleGetUserOrderHistory,
+  handleSaveOrder,
+} from "./orders.helpers";
+import { setOrderDetails, setUserOrderHistory } from "./orders.actions";
 import { clearCart } from "./../Cart/cart.actions";
-import { setUserOrderHistory } from "./orders.actions";
+import { auth } from "./../../firebase/utils";
 
 export function* saveOrder({ payload }) {
   try {
@@ -24,12 +28,11 @@ export function* onSaveOrderHistoryStart() {
 }
 
 export function* getUserOrderHistory({ payload }) {
-  console.log(payload);
   try {
     const history = yield handleGetUserOrderHistory(payload);
     yield put(setUserOrderHistory(history));
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -40,6 +43,23 @@ export function* onGetUserOrderHistoryStart() {
   );
 }
 
+export function* getOrderDetails({ payload }) {
+  try {
+    const order = yield handleGetOrder(payload);
+    yield put(setOrderDetails(order));
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onGetOrderDetailsStart() {
+  yield takeLatest(ordersTypes.GET_ORDER_DETAILS_START, getOrderDetails);
+}
+
 export default function* ordersSagas() {
-  yield all([call(onSaveOrderHistoryStart), call(onGetUserOrderHistoryStart)]);
+  yield all([
+    call(onSaveOrderHistoryStart),
+    call(onGetUserOrderHistoryStart),
+    call(onGetOrderDetailsStart),
+  ]);
 }

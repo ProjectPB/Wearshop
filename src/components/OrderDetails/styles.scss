@@ -1,0 +1,56 @@
+.orderDetailsContainer {
+  h1 {
+    margin-bottom: 1rem;
+  }
+  table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    text-align: center;
+
+    tr {
+      width: 100%;
+
+      th,
+      td {
+        width: 25%;
+        font-size: 1.8rem;
+        user-select: none;
+        padding: 1rem 0.5rem;
+      }
+
+      th {
+        background-color: whitesmoke;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
+      }
+
+      .thumbnail {
+        padding-left: -1rem;
+        width: 100%;
+        max-width: 30rem;
+      }
+    }
+  }
+  .price {
+    position: relative;
+    display: block;
+    text-align: right;
+  }
+}
+
+@media (max-width: 480px) {
+  .orderDetailsContainer {
+    table {
+      tr {
+        th,
+        td {
+          font-size: 1.2rem;
+        }
+        th {
+          padding: 0.5rem 0.5rem;
+        }
+      }
+    }
+  }
+}
