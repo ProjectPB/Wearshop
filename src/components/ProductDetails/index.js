@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductStart,
@@ -14,7 +14,6 @@ const mapState = (state) => ({
 });
 
 const ProductDetails = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { productID } = useParams();
   const { product } = useSelector(mapState);
@@ -28,7 +27,7 @@ const ProductDetails = () => {
     return () => {
       dispatch(setProduct({}));
     };
-  }, []);
+  }, [dispatch, productID]);
 
   const handleAddToCart = (product) => {
     if (!product) return;

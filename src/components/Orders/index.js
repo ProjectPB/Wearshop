@@ -43,7 +43,7 @@ const Orders = () => {
 
   useEffect(() => {
     dispatch(getUserOrderHistory(currentUser.id));
-  }, []);
+  }, [currentUser.id, dispatch]);
 
   return (
     <div className="ordersContainer">

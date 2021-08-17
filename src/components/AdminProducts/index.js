@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProductStart,
@@ -16,11 +16,11 @@ const AdminProducts = () => {
   const dispatch = useDispatch();
   const { products } = useSelector(mapState);
   const { data, queryDoc, isLastPage } = products;
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 10;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ pageSize }));
-  }, []);
+  }, [dispatch, pageSize]);
 
   const handleLoadMore = () => {
     dispatch(

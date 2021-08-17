@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddle from "redux-saga";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
 import { persistStore } from "redux-persist";
 
@@ -18,4 +18,6 @@ sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 
-export default { store, persistor };
+const reduxItems = { store, persistor };
+
+export default reduxItems;

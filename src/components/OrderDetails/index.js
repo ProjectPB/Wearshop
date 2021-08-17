@@ -35,7 +35,7 @@ const formatText = (columnName, columnValue) => {
     case "productPrice":
       return `${columnValue} PLN`;
     case "productThumbnail":
-      return <img src={columnValue} className="thumbnail" />;
+      return <img src={columnValue} className="thumbnail" alt="" />;
     default:
       return columnValue;
   }
@@ -54,7 +54,7 @@ const OrderDetails = () => {
     return () => {
       dispatch(setOrderDetails({}));
     };
-  }, []);
+  }, [dispatch, orderID]);
 
   return (
     <div className="orderDetailsContainer">

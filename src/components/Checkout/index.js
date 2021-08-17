@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import NumberFormat from "react-number-format";
 import {
   selectCartItems,
   selectCartTotal,
@@ -17,7 +16,7 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-const Checkout = ({}) => {
+const Checkout = () => {
   const history = useHistory();
   const { cartItems, total } = useSelector(mapState);
 

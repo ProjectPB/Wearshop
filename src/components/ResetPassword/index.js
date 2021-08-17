@@ -26,7 +26,7 @@ const ResetPassword = () => {
       dispatch(resetUserState());
       history.push("/login");
     }
-  }, [resetPasswordSuccess]);
+  }, [resetPasswordSuccess, history, dispatch]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {

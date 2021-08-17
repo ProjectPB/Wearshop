@@ -49,7 +49,7 @@ const PaymentDetails = () => {
     if (itemCount < 1) {
       history.push("/products");
     }
-  }, [itemCount]);
+  }, [itemCount, history]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
