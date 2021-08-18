@@ -1,6 +1,6 @@
 .productCard {
   width: 25%;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
 
   .thumbnail {
     img {
@@ -21,7 +21,10 @@
 
     .detailsLeft {
       flex: 1;
-      // margin-right: 0.1rem;
+      padding-right: 0.5rem;
+      p {
+        font-size: 1.8rem;
+      }
       .price {
         font-weight: 300;
       }
@@ -38,6 +41,13 @@
 @media (max-width: 768px) {
   .productCard {
     width: 50%;
+  }
+  .details {
+    .detailsLeft {
+      p {
+        font-size: 1.4rem;
+      }
+    }
   }
 }
 

@@ -26,13 +26,17 @@ const ProductsResults = () => {
   const { categoryFilter = "all", typeFilter = "" } = useParams();
   const [typeOptions, setTypeOptions] = useState(allOptions);
   const { products } = useSelector(mapState);
-  const pageSize = 8;
+  const [pageSize, setPageSize] = useState(8);
 
   const { data, queryDoc, isLastPage } = products;
 
   useEffect(() => {
+    if (window.innerWidth <= 992 && window.innerWidth > 768) {
+      setPageSize(9);
+    }
+
     dispatch(fetchProductsStart({ categoryFilter, typeFilter, pageSize }));
-  }, [categoryFilter, typeFilter, dispatch]);
+  }, [categoryFilter, typeFilter, dispatch, pageSize]);
 
   useEffect(() => {
     return () => {

@@ -13,7 +13,9 @@
     img {
       height: 80%;
       max-height: 60rem;
+      max-width: 40rem;
       object-fit: contain;
+      margin-right: 1rem;
     }
 
     .details {
@@ -47,6 +49,7 @@
 
       img {
         margin-bottom: 2rem;
+        margin-right: 0;
         max-height: 35rem;
       }
     }
