@@ -1,10 +1,4 @@
 .newProductContainer {
-  width: 30rem;
-  height: calc(100vh - 13rem);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding-right: 1rem;
-
   .newProduct {
     display: flex;
     flex-direction: column;

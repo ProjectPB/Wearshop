@@ -1,9 +1,14 @@
 .admin {
-  height: calc(100vh - 13rem);
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
+  max-height: calc(100vh - 12rem);
+  margin-top: 1rem;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .adminHeader {
+    margin-bottom: 1rem;
+    max-width: 15rem;
+  }
 }
 
 @media (max-width: 768px) {

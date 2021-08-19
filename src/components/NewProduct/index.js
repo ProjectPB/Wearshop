@@ -49,7 +49,7 @@ const menOptions = [
   },
 ];
 
-const NewProduct = () => {
+const NewProduct = ({ close }) => {
   const dispatch = useDispatch();
   const [productCategory, setProductCategory] = useState("men");
   const [productType, setProductType] = useState("tshirt");
@@ -79,6 +79,8 @@ const NewProduct = () => {
     setProductThumbnail("");
     setProductPrice(0);
     setProductDescription("");
+
+    close();
   };
 
   const handleSubmit = (e) => {
