@@ -28,7 +28,7 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
       })
     );
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -64,7 +64,7 @@ export function* signOutUser() {
     yield auth.signOut();
     yield put(signOutUserSuccess());
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -75,18 +75,35 @@ export function* onSignOutUserStart() {
 export function* signUpUser({
   payload: { displayName, email, password, confirmPassword },
 }) {
-  if (password !== confirmPassword) {
-    const err = ["Passwords do not match"];
+  const err = [];
+  if (displayName.length > 16 || displayName.length < 4) {
+    err.push("Invalid Full name (4-16 characters)");
     yield put(userError(err));
-    return;
   }
-
+  if (!email) {
+    err.push("Invalid email");
+    yield put(userError(err));
+  }
+  if (password !== confirmPassword) {
+    err.push("Passwords do not match");
+    yield put(userError(err));
+  }
+  if (!password || password.length < 6) {
+    err.push("Password too short (Min 6 characters)");
+    yield put(userError(err));
+  }
   try {
-    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
-    yield getSnapshotFromUserAuth(user, additionalData);
-  } catch (err) {
-    // console.log(err);
+    if (err.length === 0) {
+      const { user } = yield auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const additionalData = { displayName };
+      yield getSnapshotFromUserAuth(user, additionalData);
+    }
+  } catch (error) {
+    err.push(error.message);
+    yield put(userError(err));
   }
 }
 

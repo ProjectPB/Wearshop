@@ -20,10 +20,21 @@
       width: 100%;
 
       ul {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+
         li {
           color: red;
-          font-size: 1.6rem;
+          font-size: 1.4rem;
+          font-weight: 400;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+
+          .MuiSvgIcon-root {
+            margin-right: 0.5rem;
+          }
         }
       }
       .input {

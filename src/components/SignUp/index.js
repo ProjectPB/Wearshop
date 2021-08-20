@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUpUserStart } from "../../redux/User/user.actions";
+import { WarningOutlined } from "@material-ui/icons";
 import Button from "../forms/Button";
 import Input from "../forms/Input";
 import "./styles.scss";
@@ -60,14 +61,6 @@ const SignUp = () => {
         <h1>Sign Up</h1>
 
         <form className="body" onSubmit={handleFormSubmit}>
-          {errors.length > 0 && (
-            <ul>
-              {errors.map((err, index) => {
-                return <li key={index}>{err}</li>;
-              })}
-            </ul>
-          )}
-
           <Input
             label="Full name"
             type="text"
@@ -96,6 +89,18 @@ const SignUp = () => {
             value={confirmPassword}
             handleChange={(e) => setConfirmPassword(e.target.value)}
           />
+          {errors.length > 0 && (
+            <ul className="errors">
+              {errors.map((err, index) => {
+                return (
+                  <li key={index}>
+                    <WarningOutlined />
+                    {err}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <Button type="submit">Sign Up</Button>
         </form>
       </div>
