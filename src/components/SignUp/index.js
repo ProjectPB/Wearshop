@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { signUpUserStart } from "../../redux/User/user.actions";
+import { signUpUserStart, signUpError } from "../../redux/User/user.actions";
 import { WarningOutlined } from "@material-ui/icons";
 import Button from "../forms/Button";
 import Input from "../forms/Input";
@@ -9,13 +9,13 @@ import "./styles.scss";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
-  userErr: user.userErr,
+  signUpErrors: user.signUpErrors,
 });
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser, userErr } = useSelector(mapState);
+  const { currentUser, signUpErrors } = useSelector(mapState);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,18 +24,24 @@ const SignUp = () => {
 
   useEffect(() => {
     if (currentUser) {
-      reset();
+      resetForm();
       history.push("/");
     }
   }, [currentUser, history]);
 
   useEffect(() => {
-    if (Array.isArray(userErr) && userErr.length > 0) {
-      setErrors(userErr);
-    }
-  }, [userErr]);
+    return () => {
+      dispatch(signUpError({}));
+    };
+  }, [dispatch]);
 
-  const reset = () => {
+  useEffect(() => {
+    if (Array.isArray(signUpErrors) && signUpErrors.length > 0) {
+      setErrors(signUpErrors);
+    }
+  }, [signUpErrors]);
+
+  const resetForm = () => {
     setDisplayName("");
     setEmail("");
     setPassword("");
@@ -43,8 +49,8 @@ const SignUp = () => {
     setErrors([]);
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     dispatch(
       signUpUserStart({
         displayName,

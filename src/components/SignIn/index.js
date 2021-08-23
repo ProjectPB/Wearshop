@@ -4,21 +4,25 @@ import { Link, useHistory } from "react-router-dom";
 import {
   emailSignInStart,
   googleSignInStart,
+  signInError,
 } from "./../../redux/User/user.actions";
 import Button from "../forms/Button";
 import Input from "../forms/Input";
+import { WarningOutlined } from "@material-ui/icons";
 import "./styles.scss";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
+  signInErrors: user.signInErrors,
 });
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, signInErrors } = useSelector(mapState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (currentUser) {
@@ -27,9 +31,22 @@ const SignIn = () => {
     }
   }, [currentUser, history]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(signInError({}));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Array.isArray(signInErrors) && signInErrors.length > 0) {
+      setErrors(signInErrors);
+    }
+  }, [signInErrors]);
+
   const resetForm = () => {
     setEmail("");
     setPassword("");
+    setErrors([]);
   };
 
   const handleSubmit = (e) => {
@@ -63,7 +80,21 @@ const SignIn = () => {
           <Link to="/recover">
             <p>Forgot Password</p>
           </Link>
-          <Button type="submit">Sign In</Button>
+          {errors.length > 0 && (
+            <ul className="errors">
+              {errors.map((err, index) => {
+                return (
+                  <li key={index}>
+                    <WarningOutlined />
+                    {err}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          <Button className="submitLogin button" type="submit">
+            Sign In
+          </Button>
           <Button onClick={handleGoogleSignIn}>Sign In With Google</Button>
         </form>
       </div>

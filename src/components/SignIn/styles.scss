@@ -19,6 +19,25 @@
     .body {
       width: 100%;
 
+      ul {
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+
+        li {
+          color: red;
+          font-size: 1.4rem;
+          font-weight: 400;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+
+          .MuiSvgIcon-root {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
       p {
         font-size: 1.4rem;
         text-align: center;
@@ -35,10 +54,10 @@
         margin-bottom: 0.5rem;
         padding: 0.5rem;
       }
-    }
 
-    :nth-child(4) {
-      margin-bottom: 1rem;
+      .submitLogin {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

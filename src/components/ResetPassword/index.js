@@ -4,20 +4,22 @@ import { useHistory } from "react-router-dom";
 import {
   resetPasswordStart,
   resetUserState,
+  resetPasswordError,
 } from "../../redux/User/user.actions";
+import { WarningOutlined } from "@material-ui/icons";
 import Button from "../forms/Button";
 import Input from "../forms/Input";
 import "./styles.scss";
 
 const mapState = ({ user }) => ({
   resetPasswordSuccess: user.resetPasswordSuccess,
-  userErr: user.userErr,
+  resetPasswordErrors: user.resetPasswordErrors,
 });
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { resetPasswordSuccess, userErr } = useSelector(mapState);
+  const { resetPasswordSuccess, resetPasswordErrors } = useSelector(mapState);
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -29,10 +31,16 @@ const ResetPassword = () => {
   }, [resetPasswordSuccess, history, dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(userErr) && userErr.length > 0) {
-      setErrors(userErr);
+    return () => {
+      dispatch(resetPasswordError({}));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Array.isArray(resetPasswordErrors) && resetPasswordErrors.length > 0) {
+      setErrors(resetPasswordErrors);
     }
-  }, [userErr]);
+  }, [resetPasswordErrors]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,11 +50,16 @@ const ResetPassword = () => {
   return (
     <div className="resetContainer">
       <div className="reset">
-        <p>Please provide an email to get an email with a password reset.</p>
+        <p>Please provide an email to get a message with a password reset.</p>
         {errors.length > 0 && (
           <ul>
-            {errors.map((e, index) => {
-              return <li key={index}>{e}</li>;
+            {errors.map((err, index) => {
+              return (
+                <li key={index}>
+                  <WarningOutlined />
+                  {err}
+                </li>
+              );
             })}
           </ul>
         )}

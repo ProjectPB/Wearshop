@@ -10,7 +10,9 @@ import {
   signInSuccess,
   signOutUserSuccess,
   resetPasswordSuccess,
-  userError,
+  signUpError,
+  signInError,
+  resetPasswordError,
 } from "./user.actions";
 import { handleResetPasswordAPI } from "./user.helpers";
 
@@ -33,11 +35,13 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
 }
 
 export function* emailSignIn({ payload: { email, password } }) {
+  const err = [];
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
-  } catch (err) {
-    // console.log(err);
+  } catch (error) {
+    err.push(error.message);
+    yield put(signInError(err));
   }
 }
 
@@ -78,19 +82,19 @@ export function* signUpUser({
   const err = [];
   if (displayName.length > 16 || displayName.length < 4) {
     err.push("Invalid Full name (4-16 characters)");
-    yield put(userError(err));
+    yield put(signUpError(err));
   }
   if (!email) {
     err.push("Invalid email");
-    yield put(userError(err));
+    yield put(signUpError(err));
   }
   if (password !== confirmPassword) {
     err.push("Passwords do not match");
-    yield put(userError(err));
+    yield put(signUpError(err));
   }
   if (!password || password.length < 6) {
     err.push("Password too short (Min 6 characters)");
-    yield put(userError(err));
+    yield put(signUpError(err));
   }
   try {
     if (err.length === 0) {
@@ -103,7 +107,7 @@ export function* signUpUser({
     }
   } catch (error) {
     err.push(error.message);
-    yield put(userError(err));
+    yield put(signUpError(err));
   }
 }
 
@@ -116,7 +120,7 @@ export function* resetPassword({ payload: { email } }) {
     yield call(handleResetPasswordAPI, email);
     yield put(resetPasswordSuccess());
   } catch (err) {
-    yield put(userError(err));
+    yield put(resetPasswordError(err));
   }
 }
 
