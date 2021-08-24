@@ -6,7 +6,7 @@ import { selectCartItemsCount } from "./../../redux/Cart/cart.selectors";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import Logo from "../Logo";
-import ProfileModal from "./ProfileModal";
+import ProfileModal from "../ProfileModal";
 import "./styles.scss";
 
 const mapState = (state) => ({

@@ -1,9 +1,10 @@
 import React from "react";
 import Hero from "./../../components/Hero";
+import "./styles.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="homepage">
       <Hero />
     </div>
   );

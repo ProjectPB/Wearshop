@@ -1,7 +1,6 @@
 .productDetailsContainer {
   height: 100%;
   width: 100%;
-  padding: 1rem;
 
   .productDetails {
     width: 100%;
@@ -15,13 +14,13 @@
       max-height: 60rem;
       max-width: 40rem;
       object-fit: contain;
-      margin-right: 1rem;
     }
 
     .details {
       display: flex;
       flex-direction: column;
       text-align: center;
+      padding: 0 2rem;
 
       p,
       h1,
@@ -51,6 +50,10 @@
         margin-bottom: 2rem;
         margin-right: 0;
         max-height: 35rem;
+      }
+
+      .details {
+        padding: 1rem;
       }
     }
   }

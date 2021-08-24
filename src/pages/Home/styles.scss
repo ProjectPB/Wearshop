@@ -1,0 +1,12 @@
+.homepage {
+  height: calc(100vh - 12rem);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .homepage {
+    min-height: calc(100vh - 12rem);
+    height: auto;
+  }
+}
