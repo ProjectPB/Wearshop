@@ -11,7 +11,7 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-const ProfileModal = () => {
+const ProfileModal = ({ close }) => {
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
 
@@ -52,11 +52,11 @@ const ProfileModal = () => {
 
       {!currentUser && (
         <div className="menu">
-          <Link className="row" to="/register">
+          <Link onClick={() => close()} className="row" to="/register">
             <Button>Sign Up</Button>
           </Link>
 
-          <Link className="row" to="/login">
+          <Link onClick={() => close()} className="row" to="/login">
             <Button>Sign In</Button>
           </Link>
         </div>

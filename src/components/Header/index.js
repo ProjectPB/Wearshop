@@ -48,7 +48,9 @@ const Header = () => {
               className="profileIcon"
               onClick={handleProfileModal}
             />
-            {profileModalOpen ? <ProfileModal /> : null}
+            {profileModalOpen ? (
+              <ProfileModal close={() => handleClickAway()} />
+            ) : null}
           </div>
         </ClickAwayListener>
       </div>
