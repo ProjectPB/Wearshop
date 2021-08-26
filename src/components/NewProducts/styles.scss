@@ -1,0 +1,42 @@
+.newProductsContainer {
+  padding: 1rem 0;
+  width: 100%;
+  border-top: 1px whitesmoke solid;
+  border-bottom: 1px whitesmoke solid;
+
+  h1 {
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .newProducts {
+    display: flex;
+    cursor: grab;
+    width: 100%;
+    padding-bottom: 1rem;
+
+    .newProduct {
+      padding: 0 2rem;
+      display: block;
+
+      img {
+        height: 35rem;
+        object-fit: cover;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        opacity: 0.8;
+      }
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
