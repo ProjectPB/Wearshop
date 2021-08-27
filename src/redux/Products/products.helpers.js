@@ -21,11 +21,12 @@ export const handleFetchProducts = ({
   startAfterDoc,
   persistProducts = [],
   pageSize,
+  order = "asc",
 }) => {
   return new Promise((resolve, reject) => {
     let ref = firestore
       .collection("products")
-      .orderBy("createdDate")
+      .orderBy("createdDate", order)
       .limit(pageSize);
 
     if (categoryFilter === "men" || categoryFilter === "women")

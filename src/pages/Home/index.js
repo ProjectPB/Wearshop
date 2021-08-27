@@ -1,13 +1,18 @@
 import React from "react";
-import NewProducts from "../../components/NewProducts";
+import HomeProducts from "../../components/HomeProducts";
 import Hero from "./../../components/Hero";
 import "./styles.scss";
 
 const Home = () => {
+  const newProductsConfig = {
+    title: "NEW PRODUCTS",
+    order: "desc",
+  };
+
   return (
     <div className="homepage">
       <Hero />
-      <NewProducts />
+      <HomeProducts {...newProductsConfig} />
     </div>
   );
 };
