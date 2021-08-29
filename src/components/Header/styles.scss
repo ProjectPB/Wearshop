@@ -7,13 +7,17 @@
   padding: 0 1rem;
   margin: 0 auto;
 
-  .navLink {
-    display: block;
+  .productsLink {
+    display: flex;
+    justify-content: center;
     font-weight: 500;
     padding: 1rem;
     cursor: pointer;
     text-transform: uppercase;
     user-select: none;
+    position: relative;
+    width: fit-content;
+
     &:hover {
       color: rgb(26, 80, 161);
       transition: ease-in-out 0.2s;

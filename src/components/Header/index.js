@@ -7,6 +7,8 @@ import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined"
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import Logo from "../Logo";
 import ProfileModal from "../ProfileModal";
+import { menOptions, womenOptions } from "../../utils/config";
+import NavMenu from "../NavMenu";
 import "./styles.scss";
 
 const mapState = (state) => ({
@@ -15,6 +17,7 @@ const mapState = (state) => ({
 
 const Header = () => {
   const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { totalNumCartItems } = useSelector(mapState);
 
   const handleProfileModal = () => {
@@ -25,15 +28,37 @@ const Header = () => {
     setProfileModalOpen(false);
   };
 
+  const openMenu = () => {
+    setMenuOpen(true);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const menuConfig = {
+    menOptions,
+    womenOptions,
+    menuOpen,
+    openMenu,
+    closeMenu,
+  };
+
   return (
     <div className="header">
       <Logo />
 
-      <div className="productsLink">
-        <Link to="/products">
+      <Link to="/products">
+        <div
+          className="productsLink"
+          onMouseOver={openMenu}
+          onMouseOutCapture={closeMenu}
+        >
           <p className="navLink">products</p>
-        </Link>
-      </div>
+
+          {window.innerWidth > 600 && <NavMenu {...menuConfig} />}
+        </div>
+      </Link>
 
       <div className="icons">
         <Link to="/cart">
