@@ -11,3 +11,11 @@
     opacity: 0.8;
   }
 }
+
+@media (max-width: 480px) {
+  .logo {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

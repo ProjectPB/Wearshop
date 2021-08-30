@@ -2,17 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
-function NavMenu({ menOptions, womenOptions, menuOpen, openMenu, closeMenu }) {
+function NavMenu({ menOptions, womenOptions, menuOpen, closeMenu }) {
   return (
     <div className="navMenu" style={menuOpen ? {} : { display: "none" }}>
       <div className="menuRow">
-        <Link to="/products/men" onClick={openMenu}>
-          <h3>MEN</h3>
-        </Link>
-
         <ul>
+          <Link to="/products/men" onClick={closeMenu}>
+            <h3>MEN</h3>
+          </Link>
           {menOptions.slice(1).map(({ name, value }) => (
-            <Link to={`/products/men/${value}`} onClick={() => closeMenu}>
+            <Link key={value} to={`/products/men/${value}`} onClick={closeMenu}>
               <li>{name}</li>
             </Link>
           ))}
@@ -20,16 +19,17 @@ function NavMenu({ menOptions, womenOptions, menuOpen, openMenu, closeMenu }) {
       </div>
 
       <div className="menuRow">
-        <Link to="/products/women" onClick={() => closeMenu}>
-          <h3>WOMEN</h3>
-        </Link>
         <ul>
-          {womenOptions.slice(1).map((option) => (
+          <Link to="/products/women" onClick={closeMenu}>
+            <h3>WOMEN</h3>
+          </Link>
+          {womenOptions.slice(1).map(({ name, value }) => (
             <Link
-              to={`/products/women/${option.value}`}
-              onClick={() => closeMenu}
+              key={value}
+              to={`/products/women/${value}`}
+              onClick={closeMenu}
             >
-              <li>{option.name}</li>
+              <li>{name}</li>
             </Link>
           ))}
         </ul>

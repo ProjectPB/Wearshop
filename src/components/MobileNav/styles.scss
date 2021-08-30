@@ -1,0 +1,66 @@
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+  background-color: whitesmoke;
+
+  .menuHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid lightgray;
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      display: block;
+      cursor: pointer;
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  .categories {
+    display: flex;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: -3rem;
+
+    .item {
+      padding: 0 4rem;
+      &:not(:last-child) {
+        border-right: 1px solid lightgray;
+      }
+
+      h3 {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        &:hover {
+          color: rgb(26, 80, 161);
+          opacity: 0.9;
+          transform: scale(1.05);
+        }
+      }
+
+      ul {
+        list-style-type: none;
+        li {
+          font-size: 1.4rem;
+          font-weight: 300;
+          margin-bottom: 0.25rem;
+          &:hover {
+            color: rgb(26, 80, 161);
+            opacity: 0.9;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}
