@@ -301,6 +301,10 @@ const PaymentDetails = () => {
         <div className="group">
           <h2 className="cardDetails">Card Details</h2>
           <CardElement options={configCardElement} />
+          <p>
+            For testing purposes only, you will not be charged and products will
+            not be sent to you.
+          </p>
         </div>
 
         <Button type="submit">Pay Now</Button>
