@@ -1,5 +1,5 @@
 .homeProductsContainer {
-  padding: 1rem 0;
+  padding: 2rem 0;
   width: 100%;
   border-top: 1px whitesmoke solid;
   border-bottom: 1px whitesmoke solid;
@@ -36,7 +36,7 @@
       }
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 300;
         opacity: 0.8;
       }
@@ -49,6 +49,28 @@
     }
     &:active {
       cursor: grabbing;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .homeProductsContainer {
+    .homeProducts {
+      .homeProduct {
+        margin: 0 1rem;
+        img {
+          height: 25rem;
+          width: 18.5rem;
+        }
+
+        h2 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 }

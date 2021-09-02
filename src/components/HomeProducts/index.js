@@ -1,30 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ScrollContainer from "react-indiana-drag-scroll";
-import "./styles.scss";
 import {
-  fetchProductsStart,
-  setProducts,
+  fetchNewMenProductsStart,
+  fetchNewWomenProductsStart,
+  setNewMenProducts,
+  setNewWomenProducts,
 } from "../../redux/Products/products.actions";
+import "./styles.scss";
 
 const mapState = ({ productsData }) => ({
-  products: productsData.products,
+  newMenProducts: productsData.newMenProducts,
+  newWomenProducts: productsData.newWomenProducts,
 });
 
-function HomeProducts({ title, order }) {
+function HomeProducts({ title, order, categoryFilter, localStore }) {
   const dispatch = useDispatch();
-  const { products } = useSelector(mapState);
-  const { data } = products;
+  const { newMenProducts, newWomenProducts } = useSelector(mapState);
+  const [items, setItems] = useState();
   const pageSize = 8;
 
   useEffect(() => {
-    dispatch(fetchProductsStart({ pageSize, order }));
-  }, [dispatch, pageSize]);
+    switch (localStore) {
+      case "newMenProducts":
+        setItems(newMenProducts.data);
+        dispatch(
+          fetchNewMenProductsStart({
+            pageSize,
+            order,
+            categoryFilter,
+            localStore,
+          })
+        );
+        break;
+      case "newWomenProducts":
+        setItems(newWomenProducts.data);
+        dispatch(
+          fetchNewWomenProductsStart({
+            pageSize,
+            order,
+            categoryFilter,
+            localStore,
+          })
+        );
+        break;
+      default:
+        break;
+    }
+  }, [
+    dispatch,
+    pageSize,
+    order,
+    categoryFilter,
+    localStore,
+    newMenProducts.data,
+    newWomenProducts.data,
+  ]);
 
   useEffect(() => {
     return () => {
-      dispatch(setProducts({}));
+      dispatch(setNewMenProducts({}));
+      dispatch(setNewWomenProducts({}));
     };
   }, [dispatch]);
 
@@ -33,7 +70,7 @@ function HomeProducts({ title, order }) {
       <h1>{title}</h1>
 
       <ScrollContainer className="homeProducts">
-        {data?.map((product, index) => {
+        {items?.map((product, index) => {
           const { documentID, productThumbnail, productName, productPrice } =
             product;
           if (
@@ -48,7 +85,7 @@ function HomeProducts({ title, order }) {
               <div className="homeProduct">
                 <img src={productThumbnail} alt={productName} />
                 <h2>{productName}</h2>
-                <p>{productPrice}</p>
+                <p>{productPrice} PLN</p>
               </div>
             </Link>
           );

@@ -4,6 +4,8 @@ import {
   setProducts,
   fetchProductsStart,
   setProduct,
+  setNewWomenProducts,
+  setNewMenProducts,
 } from "./products.actions";
 import {
   handleAddProduct,
@@ -43,6 +45,36 @@ export function* onFetchProductsStart() {
   yield takeLatest(productsTypes.FETCH_PRODUCTS_START, fetchProducts);
 }
 
+export function* fetchNewMenProducts({ payload }) {
+  try {
+    const products = yield handleFetchProducts(payload);
+    yield put(setNewMenProducts(products));
+  } catch (err) {
+    // console.log(err);
+  }
+}
+export function* onFetchNewMenProductsStart() {
+  yield takeLatest(
+    productsTypes.FETCH_NEW_MEN_PRODUCTS_START,
+    fetchNewMenProducts
+  );
+}
+
+export function* fetchNewWomenProducts({ payload }) {
+  try {
+    const products = yield handleFetchProducts(payload);
+    yield put(setNewWomenProducts(products));
+  } catch (err) {
+    // console.log(err);
+  }
+}
+export function* onFetchNewWomenProductsStart() {
+  yield takeLatest(
+    productsTypes.FETCH_NEW_WOMEN_PRODUCTS_START,
+    fetchNewWomenProducts
+  );
+}
+
 export function* deleteProduct({ payload }) {
   try {
     yield handleDeleteProduct(payload);
@@ -73,6 +105,8 @@ export default function* productsSagas() {
   yield all([
     call(onAddProductStart),
     call(onFetchProductsStart),
+    call(onFetchNewMenProductsStart),
+    call(onFetchNewWomenProductsStart),
     call(onDeleteProductStart),
     call(onFetchProductStart),
   ]);
