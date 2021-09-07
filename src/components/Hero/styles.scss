@@ -19,13 +19,23 @@
     h1 {
       display: block;
       position: absolute;
-      top: 50%;
+      top: 70%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -70%);
       text-transform: uppercase;
       padding: 1rem;
-      background-color: rgba($color: #ffffff, $alpha: 0.6);
-      border-radius: 1rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-size: 1.8rem;
+      min-width: 14rem;
+      text-align: center;
+      outline: 1px solid black;
+
+      &:hover {
+        outline: 1px solid white;
+        background-color: rgba(26, 80, 161, 0.9);
+        color: white;
+        transition: all 0.3s;
+      }
     }
   }
 
@@ -42,9 +52,12 @@
     flex-direction: column;
 
     .navImg {
-      padding: 1rem;
-      height: 40rem;
+      height: 30rem;
       width: 100%;
+
+      &:first-child {
+        margin-bottom: 1rem;
+      }
     }
   }
 }
