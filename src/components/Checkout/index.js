@@ -47,7 +47,7 @@ const Checkout = () => {
           </div>
 
           <div className="buttonsRow">
-            <Button onClick={() => history.goBack()}>Continue Shopping</Button>
+            <Button onClick={() => history.goBack()}>Return</Button>
             <Link to="/payment">
               <Button>Checkout</Button>
             </Link>
