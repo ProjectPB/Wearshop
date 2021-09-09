@@ -5,9 +5,11 @@ import Button from "./../forms/Button";
 import { addProduct } from "./../../redux/Cart/cart.actions";
 import "./styles.scss";
 import { Add, ShoppingCartOutlined } from "@material-ui/icons";
+import { useSnackbar } from "notistack";
 
 const ProductCard = (product) => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { documentID, productThumbnail, productName, productPrice } = product;
   if (
     !documentID ||
@@ -17,9 +19,11 @@ const ProductCard = (product) => {
   )
     return null;
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product, variant) => {
     if (!product) return;
     dispatch(addProduct(product));
+
+    enqueueSnackbar(`${productName} added to cart.`, { variant });
   };
 
   const configAddToCartBtn = {
@@ -41,7 +45,7 @@ const ProductCard = (product) => {
         <div className="detailsRight">
           <Button
             {...configAddToCartBtn}
-            onClick={() => handleAddToCart(product)}
+            onClick={() => handleAddToCart(product, "success")}
             style={{ padding: "0.4rem 0.8rem" }}
           >
             <Add />

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 import {
   fetchProductStart,
   setProduct,
@@ -17,6 +18,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { productID } = useParams();
   const { product } = useSelector(mapState);
+  const { enqueueSnackbar } = useSnackbar();
 
   const { productName, productThumbnail, productPrice, productDescription } =
     product;
@@ -29,9 +31,11 @@ const ProductDetails = () => {
     };
   }, [dispatch, productID]);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product, variant) => {
     if (!product) return;
     dispatch(addProduct(product));
+
+    enqueueSnackbar(`${productName} added to cart.`, { variant });
   };
 
   const configAddToCartBtn = {
@@ -50,7 +54,7 @@ const ProductDetails = () => {
           <p>{productPrice} PLN</p>
           <Button
             {...configAddToCartBtn}
-            onClick={() => handleAddToCart(product)}
+            onClick={() => handleAddToCart(product, "success")}
           >
             Add to cart
           </Button>

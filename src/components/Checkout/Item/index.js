@@ -1,5 +1,6 @@
 import React from "react";
 import NumberFormat from "react-number-format";
+import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
 import { HighlightOff } from "@material-ui/icons";
 import {
@@ -10,11 +11,14 @@ import {
 
 const Item = (product) => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
 
-  const handleRemoveCartItem = (documentID) => {
+  const handleRemoveCartItem = (documentID, variant) => {
     dispatch(removeCartItem({ documentID }));
+
+    enqueueSnackbar(`${productName} removed from cart.`, { variant });
   };
 
   const handleAddProduct = (product) => {
@@ -55,7 +59,7 @@ const Item = (product) => {
       <td>
         <span
           className="cartBtn"
-          onClick={() => handleRemoveCartItem(documentID)}
+          onClick={() => handleRemoveCartItem(documentID, "success")}
         >
           <HighlightOff fontSize="large" />
         </span>
