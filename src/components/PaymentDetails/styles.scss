@@ -42,4 +42,17 @@
       margin-bottom: 0.5rem;
     }
   }
+
+  .processing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+  }
 }

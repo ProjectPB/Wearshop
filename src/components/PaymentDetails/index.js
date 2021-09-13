@@ -12,7 +12,9 @@ import {
 import { saveOrderHistory } from "./../../redux/Orders/orders.actions";
 import { createStructuredSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 import { useHistory } from "react-router-dom";
+import ReactLoading from "react-loading";
 import "./styles.scss";
 
 const initialAddressState = {
@@ -32,6 +34,7 @@ const mapState = createStructuredSelector({
 
 const PaymentDetails = () => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -44,6 +47,7 @@ const PaymentDetails = () => {
   });
   const [recipientName, setRecipientName] = useState("");
   const [nameOnCard, setNameOnCard] = useState("");
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     if (itemCount < 1) {
@@ -71,6 +75,8 @@ const PaymentDetails = () => {
     ) {
       return;
     }
+
+    setProcessing(true);
 
     apiInstance
       .post("/payments/create", {
@@ -120,6 +126,8 @@ const PaymentDetails = () => {
                   }),
                 };
                 dispatch(saveOrderHistory(configOrder));
+                setProcessing(false);
+                enqueueSnackbar(`Order submitted.`, { variant: "success" });
               });
           });
       });
@@ -306,6 +314,18 @@ const PaymentDetails = () => {
             not be sent to you.
           </p>
         </div>
+
+        {processing && (
+          <div className="processing">
+            <h2>Processing payment</h2>
+            <ReactLoading
+              type={"bubbles"}
+              color={"#1a50a1"}
+              height={"50px"}
+              width={"50px"}
+            />
+          </div>
+        )}
 
         <Button type="submit">Pay Now</Button>
       </form>
