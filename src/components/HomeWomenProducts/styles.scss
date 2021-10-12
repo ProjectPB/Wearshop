@@ -1,0 +1,76 @@
+.homeProductsContainer {
+  padding: 2rem 0;
+  width: 100%;
+  border-top: 1px whitesmoke solid;
+  border-bottom: 1px whitesmoke solid;
+
+  h1 {
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .homeProducts {
+    display: flex;
+    cursor: grab;
+    width: 100%;
+    padding-bottom: 1rem;
+
+    a {
+      cursor: grab;
+    }
+
+    .homeProduct {
+      margin: 0 2rem;
+      display: block;
+      cursor: pointer;
+
+      img {
+        height: 35rem;
+        width: 27.5rem;
+        object-fit: cover;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.6rem;
+        font-weight: 300;
+        opacity: 0.8;
+      }
+
+      &:hover {
+        img {
+          opacity: 0.9;
+        }
+      }
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .homeProductsContainer {
+    .homeProducts {
+      .homeProduct {
+        margin: 0 1rem;
+        img {
+          height: 25rem;
+          width: 18.5rem;
+        }
+
+        h2 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
