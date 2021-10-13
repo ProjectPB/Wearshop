@@ -17,6 +17,8 @@ import productsTypes from "./products.types";
 import {
   loadNewMenProducts,
   loadNewWomenProducts,
+  loadProductData,
+  loadProducts,
 } from "../Loading/loading.actions";
 
 export function* addProduct({ payload }) {
@@ -41,6 +43,7 @@ export function* fetchProducts({ payload }) {
   try {
     const products = yield handleFetchProducts(payload);
     yield put(setProducts(products));
+    yield put(loadProducts(true));
   } catch (err) {
     // console.log(err);
   }
@@ -98,6 +101,7 @@ export function* fetchProduct({ payload }) {
   try {
     const product = yield handleFetchProduct(payload);
     yield put(setProduct(product));
+    yield put(loadProductData(true));
   } catch (err) {
     // console.log(err);
   }

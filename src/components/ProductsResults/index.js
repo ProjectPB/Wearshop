@@ -8,6 +8,7 @@ import {
 import Select from "../forms/Select";
 import LoadMore from "../LoadMore";
 import ProductCard from "../ProductCard";
+import Loading from "./../Loading";
 import "./styles.scss";
 import {
   allOptions,
@@ -15,9 +16,11 @@ import {
   menOptions,
   womenOptions,
 } from "../../utils/config";
+import { loadProducts } from "../../redux/Loading/loading.actions";
 
-const mapState = ({ productsData }) => ({
+const mapState = ({ productsData, loading }) => ({
   products: productsData.products,
+  loaded: loading.productsLoaded,
 });
 
 const ProductsResults = () => {
@@ -25,7 +28,7 @@ const ProductsResults = () => {
   const dispatch = useDispatch();
   const { categoryFilter = "all", typeFilter = "" } = useParams();
   const [typeOptions, setTypeOptions] = useState(allOptions);
-  const { products } = useSelector(mapState);
+  const { products, loaded } = useSelector(mapState);
   const [pageSize, setPageSize] = useState(8);
 
   const { data, queryDoc, isLastPage } = products;
@@ -35,12 +38,14 @@ const ProductsResults = () => {
       setPageSize(9);
     }
 
+    dispatch(loadProducts(false));
     dispatch(fetchProductsStart({ categoryFilter, typeFilter, pageSize }));
   }, [categoryFilter, typeFilter, dispatch, pageSize]);
 
   useEffect(() => {
     return () => {
       dispatch(setProducts({}));
+      dispatch(loadProducts(false));
     };
   }, [dispatch]);
 
@@ -62,6 +67,7 @@ const ProductsResults = () => {
 
   const handleCategoryFilter = (e) => {
     const filter = e.target.value;
+
     if (typeFilter) {
       history.push(`/products/${filter}/${typeFilter}`);
     } else {
@@ -111,34 +117,37 @@ const ProductsResults = () => {
     onLoadMoreEvt: handleLoadMore,
   };
 
-  if (!Array.isArray(data)) return null;
-
   return (
     <div className="productsResultsContainer">
       <div className="filters">
         <Select {...configCategoryFilters} />
         <Select {...configTypeFilters} />
       </div>
+      {loaded ? (
+        <div className="productsResults">
+          {data?.length < 1 && <p className="noResults">No search results</p>}
+          {data?.map((product, index) => {
+            const { productThumbnail, productName, productPrice } = product;
+            if (
+              !productThumbnail ||
+              !productName ||
+              typeof productPrice === "undefined"
+            )
+              return null;
 
-      <div className="productsResults">
-        {data.length < 1 && <p className="noResults">No search results</p>}
-        {data.map((product, index) => {
-          const { productThumbnail, productName, productPrice } = product;
-          if (
-            !productThumbnail ||
-            !productName ||
-            typeof productPrice === "undefined"
-          )
-            return null;
+            const configProduct = {
+              ...product,
+            };
 
-          const configProduct = {
-            ...product,
-          };
-
-          return <ProductCard key={index} {...configProduct} />;
-        })}
-      </div>
-      {!isLastPage && <LoadMore {...configLoadMore} />}
+            return <ProductCard key={index} {...configProduct} />;
+          })}
+          {!isLastPage && <LoadMore {...configLoadMore} />}
+        </div>
+      ) : (
+        <div className="loadingContainer">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };

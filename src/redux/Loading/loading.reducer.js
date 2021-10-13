@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   newMenProductsLoaded: false,
   newWomenProductsLoaded: false,
   productsLoaded: false,
-  adminProductsLoaded: false,
   orderHistoryLoaded: false,
   orderDetailsLoaded: false,
   heroLoaded: false,
@@ -16,7 +15,7 @@ const loadingReducer = (state = INITIAL_STATE, action) => {
     case loadingTypes.LOAD_PRODUCT_DATA:
       return {
         ...state,
-        productDataLoaded: true,
+        productDataLoaded: action.payload,
       };
     case loadingTypes.LOAD_NEW_MEN_PRODUCTS:
       return {
@@ -31,12 +30,7 @@ const loadingReducer = (state = INITIAL_STATE, action) => {
     case loadingTypes.LOAD_PRODUCTS:
       return {
         ...state,
-        productsLoaded: true,
-      };
-    case loadingTypes.LOAD_ADMIN_PRODUCTS:
-      return {
-        ...state,
-        adminProductsLoaded: true,
+        productsLoaded: action.payload,
       };
     case loadingTypes.LOAD_ORDER_HISTORY:
       return {
@@ -46,7 +40,7 @@ const loadingReducer = (state = INITIAL_STATE, action) => {
     case loadingTypes.LOAD_ORDER_DETAILS:
       return {
         ...state,
-        orderDetailsLoaded: true,
+        orderDetailsLoaded: action.payload,
       };
     case loadingTypes.LOAD_HERO:
       return {

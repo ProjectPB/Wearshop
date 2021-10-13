@@ -6,6 +6,10 @@ import {
   handleSaveOrder,
 } from "./orders.helpers";
 import { setOrderDetails, setUserOrderHistory } from "./orders.actions";
+import {
+  loadOrderDetails,
+  loadOrderHistory,
+} from "./../Loading/loading.actions";
 import { clearCart } from "./../Cart/cart.actions";
 import { auth } from "./../../firebase/utils";
 
@@ -31,6 +35,7 @@ export function* getUserOrderHistory({ payload }) {
   try {
     const history = yield handleGetUserOrderHistory(payload);
     yield put(setUserOrderHistory(history));
+    yield put(loadOrderHistory());
   } catch (err) {
     // console.log(err);
   }
@@ -47,6 +52,7 @@ export function* getOrderDetails({ payload }) {
   try {
     const order = yield handleGetOrder(payload);
     yield put(setOrderDetails(order));
+    yield put(loadOrderDetails(true));
   } catch (err) {
     // console.log(err);
   }

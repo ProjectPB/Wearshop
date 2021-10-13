@@ -8,16 +8,19 @@ import {
 } from "./../../redux/Products/products.actions";
 import { addProduct } from "../../redux/Cart/cart.actions";
 import Button from "./../forms/Button";
+import Loading from "./../Loading";
 import "./styles.scss";
+import { loadProductData } from "../../redux/Loading/loading.actions";
 
-const mapState = (state) => ({
-  product: state.productsData.product,
+const mapState = ({ productsData, loading }) => ({
+  product: productsData.product,
+  loaded: loading.productDataLoaded,
 });
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { productID } = useParams();
-  const { product } = useSelector(mapState);
+  const { product, loaded } = useSelector(mapState);
   const { enqueueSnackbar } = useSnackbar();
 
   const { productName, productThumbnail, productPrice, productDescription } =
@@ -28,6 +31,7 @@ const ProductDetails = () => {
 
     return () => {
       dispatch(setProduct({}));
+      dispatch(loadProductData(false));
     };
   }, [dispatch, productID]);
 
@@ -42,7 +46,7 @@ const ProductDetails = () => {
     type: "button",
   };
 
-  return (
+  return loaded ? (
     <div className="productDetailsContainer">
       <div className="productDetails">
         <div className="imageContainer">
@@ -64,6 +68,8 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

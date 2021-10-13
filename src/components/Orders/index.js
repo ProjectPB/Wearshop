@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getUserOrderHistory } from "./../../redux/Orders/orders.actions";
 import moment from "moment";
+import Loading from "./../Loading";
 import "./styles.scss";
-import { useHistory } from "react-router-dom";
 
 const columns = [
   {
@@ -31,15 +32,16 @@ const formatText = (columnName, columnValue) => {
   }
 };
 
-const mapState = ({ user, ordersData }) => ({
+const mapState = ({ user, ordersData, loading }) => ({
   currentUser: user.currentUser,
   orderHistory: ordersData.orderHistory.data,
+  loaded: loading.orderHistoryLoaded,
 });
 
 const Orders = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser, orderHistory } = useSelector(mapState);
+  const { currentUser, orderHistory, loaded } = useSelector(mapState);
 
   useEffect(() => {
     dispatch(getUserOrderHistory(currentUser.id));
@@ -48,39 +50,45 @@ const Orders = () => {
   return (
     <div className="ordersContainer">
       <h1>ORDERS HISTORY</h1>
-      <table className="orders">
-        <thead>
-          <tr>
-            {columns.map((column, index) => {
-              const { label } = column;
-              return <th key={index}>{label}</th>;
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(orderHistory) &&
-            orderHistory.length > 0 &&
-            orderHistory.map((row, index) => {
-              const { documentID } = row;
+      {loaded ? (
+        <table className="orders">
+          <thead>
+            <tr>
+              {columns.map((column, index) => {
+                const { label } = column;
+                return <th key={index}>{label}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(orderHistory) &&
+              orderHistory.length > 0 &&
+              orderHistory.map((row, index) => {
+                const { documentID } = row;
 
-              return (
-                <tr
-                  className="order"
-                  key={index}
-                  onClick={() => history.push(`/order/${documentID}`)}
-                >
-                  {columns.map((column, index) => {
-                    const columnName = column.id;
-                    const columnValue = row[columnName];
-                    const formattedText = formatText(columnName, columnValue);
+                return (
+                  <tr
+                    className="order"
+                    key={index}
+                    onClick={() => history.push(`/order/${documentID}`)}
+                  >
+                    {columns.map((column, index) => {
+                      const columnName = column.id;
+                      const columnValue = row[columnName];
+                      const formattedText = formatText(columnName, columnValue);
 
-                    return <td key={index}>{formattedText}</td>;
-                  })}
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+                      return <td key={index}>{formattedText}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      ) : (
+        <div className="loadingContainer">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };

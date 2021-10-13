@@ -1,7 +1,8 @@
 import loadingTypes from "./loading.types";
 
-export const loadProductData = () => ({
+export const loadProductData = (state) => ({
   type: loadingTypes.LOAD_PRODUCT_DATA,
+  payload: state,
 });
 
 export const loadNewMenProducts = () => ({
@@ -12,20 +13,18 @@ export const loadNewWomenProducts = () => ({
   type: loadingTypes.LOAD_NEW_WOMEN_PRODUCTS,
 });
 
-export const loadProducts = () => ({
+export const loadProducts = (state) => ({
   type: loadingTypes.LOAD_PRODUCTS,
-});
-
-export const loadAdminProducts = () => ({
-  type: loadingTypes.LOAD_ADMIN_PRODUCTS,
+  payload: state,
 });
 
 export const loadOrderHistory = () => ({
   type: loadingTypes.LOAD_ORDER_HISTORY,
 });
 
-export const loadOrderDetails = () => ({
+export const loadOrderDetails = (state) => ({
   type: loadingTypes.LOAD_ORDER_DETAILS,
+  payload: state,
 });
 
 export const loadHero = () => ({

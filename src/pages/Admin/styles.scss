@@ -1,6 +1,5 @@
 .admin {
-  max-height: calc(100vh - 12rem);
-  margin-top: 1rem;
+  min-height: calc(100vh - 12rem);
   padding: 0 1rem;
   display: flex;
   flex-direction: column;

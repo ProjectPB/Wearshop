@@ -4,7 +4,7 @@ import "./styles.scss";
 
 const Loading = () => {
   return (
-    <div className="loadingContainer">
+    <div className="container">
       <ReactLoading
         type={"spin"}
         color={"#1a50a1"}

@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { loadOrderDetails } from "../../redux/Loading/loading.actions";
 import {
   getOrderDetailsStart,
   setOrderDetails,
 } from "./../../redux/Orders/orders.actions";
+import Loading from "./../Loading";
 import "./styles.scss";
 
 const columns = [
@@ -26,8 +28,9 @@ const columns = [
   },
 ];
 
-const mapState = ({ ordersData }) => ({
+const mapState = ({ ordersData, loading }) => ({
   orderDetails: ordersData.orderDetails,
+  loaded: loading.orderDetailsLoaded,
 });
 
 const formatText = (columnName, columnValue) => {
@@ -44,7 +47,7 @@ const formatText = (columnName, columnValue) => {
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { orderID } = useParams();
-  const { orderDetails } = useSelector(mapState);
+  const { orderDetails, loaded } = useSelector(mapState);
   const { orderTotal } = orderDetails;
   const orderItems = orderDetails && orderDetails.orderItems;
 
@@ -53,10 +56,11 @@ const OrderDetails = () => {
 
     return () => {
       dispatch(setOrderDetails({}));
+      dispatch(loadOrderDetails(false));
     };
   }, [dispatch, orderID]);
 
-  return (
+  return loaded ? (
     <div className="orderDetailsContainer">
       <h1>Order ID: {orderID}</h1>
 
@@ -89,6 +93,12 @@ const OrderDetails = () => {
       </table>
 
       <h1 className="price">Total: {orderTotal} PLN</h1>
+    </div>
+  ) : (
+    <div className="orderDetailsContainer">
+      <div className="loadingContainer">
+        <Loading />
+      </div>
     </div>
   );
 };
