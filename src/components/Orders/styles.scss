@@ -8,6 +8,7 @@
 
   h1 {
     margin-bottom: 1rem;
+    font-size: 1.8rem;
   }
   table {
     width: 100%;
@@ -16,9 +17,8 @@
 
     .order:hover {
       background-color: whitesmoke;
-      color: gray;
+      opacity: 0.9;
       cursor: pointer;
-      outline: 1px solid gray;
     }
 
     tr {
@@ -27,7 +27,7 @@
       th,
       td {
         width: 33%;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         user-select: none;
         padding: 1rem 0 1rem 1rem;
       }
