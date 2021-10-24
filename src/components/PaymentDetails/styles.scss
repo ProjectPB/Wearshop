@@ -6,7 +6,7 @@
   margin: 2rem auto;
 
   .group {
-    margin: 0 0 4rem;
+    margin: 2rem 0;
 
     h2 {
       font-size: 1.8rem;
@@ -38,8 +38,22 @@
       }
     }
 
-    .cardDetails {
-      margin-bottom: 0.5rem;
+    .details {
+      display: block;
+    }
+  }
+
+  .checkboxContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 0 0.25rem;
+
+    h2 {
+      font-weight: 500;
+      font-size: 1.6rem;
     }
   }
 

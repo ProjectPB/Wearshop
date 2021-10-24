@@ -48,12 +48,20 @@ const PaymentDetails = () => {
   const [recipientName, setRecipientName] = useState("");
   const [nameOnCard, setNameOnCard] = useState("");
   const [processing, setProcessing] = useState(false);
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   useEffect(() => {
     if (itemCount < 1) {
       history.push("/products");
     }
   }, [itemCount, history]);
+
+  useEffect(() => {
+    if (checkboxChecked) {
+      setNameOnCard(recipientName);
+      setBillingAddress(shippingAddress);
+    }
+  }, [checkboxChecked, recipientName, shippingAddress, billingAddress]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -103,9 +111,9 @@ const PaymentDetails = () => {
           .then(({ paymentMethod }) => {
             stripe
               .confirmCardPayment(clientSecret, {
-                payment_method: paymentMethod.id,
+                payment_method: paymentMethod?.id,
               })
-              .then(({ paymentIntent }) => {
+              .then(() => {
                 const configOrder = {
                   orderTotal: total,
                   orderItems: cartItems.map((item) => {
@@ -151,6 +159,10 @@ const PaymentDetails = () => {
     });
   };
 
+  const handleCheckbox = () => {
+    setCheckboxChecked(!checkboxChecked);
+  };
+
   const configCardElement = {
     iconStyle: "solid",
     style: {
@@ -165,7 +177,7 @@ const PaymentDetails = () => {
     <div className="paymentDetails">
       <form onSubmit={handleFormSubmit}>
         <div className="group">
-          <h2>Shipping</h2>
+          <h2>Shipping address</h2>
 
           <Input
             required
@@ -235,8 +247,18 @@ const PaymentDetails = () => {
           </div>
         </div>
 
+        <div className="checkboxContainer">
+          <h2>Billing address does not differ from shipping address</h2>
+          <input
+            type="checkbox"
+            name="checkbox"
+            onChange={handleCheckbox}
+            value={checkboxChecked}
+          />
+        </div>
+
         <div className="group">
-          <h2>Billing Address</h2>
+          <h2>Billing address</h2>
 
           <Input
             required
@@ -307,7 +329,7 @@ const PaymentDetails = () => {
         </div>
 
         <div className="group">
-          <h2 className="cardDetails">Card Details</h2>
+          <h2 className="details">Card Details</h2>
           <CardElement options={configCardElement} />
           <p>
             For testing purposes only, you will not be charged and products will
