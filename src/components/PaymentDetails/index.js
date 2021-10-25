@@ -56,13 +56,6 @@ const PaymentDetails = () => {
     }
   }, [itemCount, history]);
 
-  useEffect(() => {
-    if (checkboxChecked) {
-      setNameOnCard(recipientName);
-      setBillingAddress(shippingAddress);
-    }
-  }, [checkboxChecked, recipientName, shippingAddress, billingAddress]);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const cardElement = elements.getElement("card");
@@ -161,6 +154,11 @@ const PaymentDetails = () => {
 
   const handleCheckbox = () => {
     setCheckboxChecked(!checkboxChecked);
+
+    if (!checkboxChecked) {
+      setNameOnCard(recipientName);
+      setBillingAddress(shippingAddress);
+    }
   };
 
   const configCardElement = {
